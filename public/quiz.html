@@ -11,8 +11,258 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <h1Diggaj>
-    <!-- Write the code here -->
-  
-  </body>
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #333;
+}
+
+#quiz-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+}
+
+#logo-container {
+    margin-bottom: 20px;
+}
+
+#logo {
+    width: 150px;
+    height: auto;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 2em;
+    color: #333;
+}
+
+#info-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#timer, #score {
+    font-size: 1.2em;
+}
+
+.question, .feedback {
+    margin-bottom: 20px;
+}
+
+.answers {
+    display: grid;
+    gap: 10px;
+}
+
+.answer-btn {
+    padding: 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.answer-btn:hover {
+    background: #45A049;
+    transform: translateY(-2px);
+}
+
+.answer-btn:active {
+    background: #3e8e41;
+    transform: translateY(0);
+}
+
+.feedback {
+    font-size: 1.5em;
+}
+
+.start-btn, .level-btn, .play-btn, .next-btn, .restart-btn {
+    padding: 10px 20px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.start-btn:hover, .level-btn:hover, .play-btn:hover, .next-btn:hover, .restart-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+.start-btn:active, .level-btn:active, .play-btn:active, .next-btn:active, .restart-btn:active {
+    background: #004494;
+    transform: translateY(0);
+}
+
+#next-container {
+    margin-top: 20px;
+}
+</style>
+<body>
+    <div id="quiz-container">
+        <div id="logo-container">
+            <img src="brain.png" alt="Brainstorming Logo" id="logo">
+        </div>
+        <h2>The Ultimate Word Coach Quiz</h2>
+        <div id="info-container">
+            <div id="timer">Time Left: <span id="time">10</span>s</div>
+            <div id="score">Score: <span id="score-value">0</span></div>
+        </div>
+        <div id="question-container">
+            <div class="question" id="question-1">
+                <h2>What is the synonym of "happy"?</h2>
+                <div class="answers">
+                    <button class="answer-btn" onclick="checkAnswer(true, this)">Joyful</button>
+                    <button class="answer-btn" onclick="checkAnswer(false, this)">Sad</button>
+                    <button class="answer-btn" onclick="checkAnswer(false, this)">Angry</button>
+                    <button class="answer-btn" onclick="checkAnswer(false, this)">Bored</button>
+                </div>
+            </div>
+        </div>
+        <div id="feedback" style="display: none;"></div>
+        <div id="next-container" style="display: none;">
+            <button id="next-btn" class="next-btn" onclick="loadNextQuestion()">Next Question</button>
+        </div>
+    </div>
+
+    <script>
+        let countdown;
+        let score = 0;
+        let currentQuestionIndex = 0;
+
+        const questions = [
+            {
+                question: "What is the synonym of 'happy'?",
+                answers: [
+                    { text: "Joyful", correct: true },
+                    { text: "Sad", correct: false },
+                    { text: "Angry", correct: false },
+                    { text: "Bored", correct: false }
+                ]
+            },
+            {
+                question: "What is the antonym of 'fast'?",
+                answers: [
+                    { text: "Quick", correct: false },
+                    { text: "Slow", correct: true },
+                    { text: "Swift", correct: false },
+                    { text: "Rapid", correct: false }
+                ]
+            },
+            {
+                question: "What is the synonym of 'big'?",
+                answers: [
+                    { text: "Large", correct: true },
+                    { text: "Tiny", correct: false },
+                    { text: "Small", correct: false },
+                    { text: "Mini", correct: false }
+                ]
+            }
+        ];
+
+        function startTimer() {
+            let timeLeft = 10;
+            const timerElement = document.getElementById('time');
+
+            countdown = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    showFeedback("Time's up!");
+                } else {
+                    timerElement.textContent = timeLeft;
+                    timeLeft -= 1;
+                }
+            }, 1000);
+        }
+
+        function checkAnswer(isCorrect, btn) {
+            clearInterval(countdown);
+            disableAnswers();
+
+            if (isCorrect) {
+                score += 10;
+                document.getElementById('score-value').textContent = score;
+                btn.style.backgroundColor = "green";
+            } else {
+                btn.style.backgroundColor = "red";
+                showCorrectAnswer();
+            }
+
+            document.getElementById('next-container').style.display = 'block';
+        }
+
+        function showFeedback(message) {
+            const feedbackElement = document.getElementById('feedback');
+            feedbackElement.style.display = 'block';
+            feedbackElement.innerHTML = `<h2>${message}</h2>`;
+        }
+
+        function showCorrectAnswer() {
+            const currentQuestion = questions[currentQuestionIndex];
+            const buttons = document.querySelectorAll('.answer-btn');
+            buttons.forEach((btn, index) => {
+                if (currentQuestion.answers[index].correct) {
+                    btn.style.backgroundColor = "green";
+                }
+            });
+        }
+
+        function disableAnswers() {
+            const buttons = document.querySelectorAll('.answer-btn');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+            });
+        }
+
+        function loadNextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex >= questions.length) {
+                showFeedback("Quiz Completed!");
+                document.getElementById('next-container').style.display = 'none';
+                return;
+            }
+
+            const currentQuestion = questions[currentQuestionIndex];
+            const questionContainer = document.getElementById('question-container');
+            const questionElement = questionContainer.querySelector('.question h2');
+            const answersContainer = questionContainer.querySelector('.answers');
+
+            questionElement.textContent = currentQuestion.question;
+            answersContainer.innerHTML = '';
+
+            currentQuestion.answers.forEach(answer => {
+                const btn = document.createElement('button');
+                btn.textContent = answer.text;
+                btn.classList.add('answer-btn');
+                btn.onclick = () => checkAnswer(answer.correct, btn);
+                answersContainer.appendChild(btn);
+            });
+
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('next-container').style.display = 'none';
+            startTimer();
+        }
+
+        document.addEventListener('DOMContentLoaded', startTimer);
+    </script>
+</body>
 </html>

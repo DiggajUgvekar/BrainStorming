@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
-    "htmx.org": "^1.9.12"
+    "htmx.org": "^1.9.12",
+    "mongoose": "^8.5.0"
   }
 }

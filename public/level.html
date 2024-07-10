@@ -48,6 +48,7 @@
             margin: 10px 0;
             color: rgb(0, 0, 0);
             transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+            text-decoration: none;
         }
 
         .orange {
@@ -76,10 +77,10 @@
 <body>
     <div class="container">
         <div class="welcome-box">
-            <img src="p.jpg" alt="Brainstorming Logo" class="logo">
-            <button class="level-btn orange" id="easy-btn" hx-get="easy.html" hx-target="#content">Easy</button>
-            <button class="level-btn orange" id="medium-btn" hx-get="medium.html" hx-target="#content">Medium</button>
-            <button class="level-btn orange" id="hard-btn" hx-get="hard.html" hx-target="#content">Hard</button>
+            <img src="brain.png" alt="Brainstorming Logo" class="logo">
+            <a class="level-btn orange" id="easy-btn" href="/quiz" >Easy</a>
+            <a class="level-btn orange" id="medium-btn" href="/quiz" >Medium</a>
+            <a class="level-btn orange" id="hard-btn" href="/quiz" >Hard</a>
         </div>
         <div id="content"></div>
     </div>

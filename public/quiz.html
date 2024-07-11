@@ -30,26 +30,22 @@
       </div>
       <div id="feedback" style="display: none"></div>
       <div id="next-container" style="display: none">
-        <button id="next-btn" class="next-btn" onclick="loadNextQuestion()">
+        <button id="next-btn" class="next-btn">
           Next Question
         </button>
       </div>
     </div>
 
-    <script>
-      let countdown;
-      let score = 0;
-      let currentQuestionIndex = 0;
-      let questions = [];
-
+    <script type="module">
+      import {variables} from './Utils/variables.js';
       async function fetchQuestions() {
         try {
           const response = await fetch("/api/questions");
           if (!response.ok) {
             throw new Error("Failed to load questions. Please try again.");
           }
-          questions = await response.json();
-          if (questions.length > 0) {
+          variables.Questions = await response.json();
+          if (variables.Questions.length > 0) {
             loadNextQuestion();
           } else {
             throw new Error("No questions fetched");
@@ -64,9 +60,9 @@
           let timeLeft = 10;
           const timerElement = document.getElementById('time');
 
-          countdown = setInterval(() => {
+          variables.countdown = setInterval(() => {
               if (timeLeft < 0) {
-                  clearInterval(countdown);
+                  clearInterval(variables.countdown);
                   showFeedback("Time's up!");
               } else {
                   timerElement.textContent = timeLeft;
@@ -76,12 +72,12 @@
       }
 
       function checkAnswer(isCorrect, btn) {
-          clearInterval(countdown);
+          clearInterval(variables.countdown);
           disableAnswers();
 
           if (isCorrect) {
-              score += 10;
-              document.getElementById('score-value').textContent = score;
+              variables.score += 10;
+              document.getElementById('score-value').textContent = variables.score;
               btn.style.backgroundColor = "green";
           } else {
               btn.style.backgroundColor = "red";
@@ -98,7 +94,7 @@
       }
 
       function showCorrectAnswer() {
-          const currentQuestion = questions[currentQuestionIndex];
+          const currentQuestion = variables.Questions[variables.currentQuestionIndex];
           const buttons = document.querySelectorAll('.answer-btn');
           buttons.forEach((btn, index) => {
               if (currentQuestion.answers[index].correct) {
@@ -115,13 +111,13 @@
       }
 
       function loadNextQuestion() {
-          if (currentQuestionIndex >= 5) {
+          if (variables.currentQuestionIndex >= 5) {
               showFeedback("Quiz Completed!");
               document.getElementById('next-container').style.display = 'none';
               return;
           }
 
-          const currentQuestion = questions[currentQuestionIndex];
+          const currentQuestion = variables.Questions[variables.currentQuestionIndex];
           const questionContainer = document.getElementById('question-container');
           const questionElement = questionContainer.querySelector('.question h2');
           const answersContainer = questionContainer.querySelector('.answers');
@@ -129,7 +125,7 @@
           questionElement.textContent = currentQuestion.question;
           answersContainer.innerHTML = '';
 
-          document.getElementById('number').textContent = currentQuestionIndex + 1; //display question number
+          document.getElementById('number').textContent = variables.currentQuestionIndex + 1; //display question number
           // Display 4 options of answer 
           currentQuestion.answers.forEach(answer => {
               const btn = document.createElement('button');
@@ -142,9 +138,10 @@
           document.getElementById('feedback').style.display = 'none';
           document.getElementById('next-container').style.display = 'none';
           startTimer();
-          currentQuestionIndex++;
+          variables.currentQuestionIndex++;
       }
 
+      document.getElementById('next-btn').addEventListener('click', loadNextQuestion);
       document.addEventListener("DOMContentLoaded", fetchQuestions);
     </script>
   </body>

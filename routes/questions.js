@@ -1,6 +1,6 @@
 // routes/questions.js
-const express = require('express');
-const { fetchQuestions } = require('../services/questionService');
+import express from 'express';
+import { fetchQuestions } from '../services/questionService.js';
 const router = express.Router();
 
 router.get('/questions', async (req, res) => {
@@ -12,4 +12,4 @@ router.get('/questions', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

@@ -38,14 +38,15 @@ async function fetchQuestions() {
 
                 if (response.data && response.data.synonyms && response.data.synonyms.length > 1) {
                     const synonyms = response.data.synonyms;
+                    const antonyms = response.data.antonyms;
                     shuffleArray(synonyms);
 
                     const correctAnswer = synonyms[0];
-                    let incorrectAnswers = synonyms.slice(1, 4);  //array of remaining 3 wrong options 
+                    let incorrectAnswers = antonyms.slice(1, 4);  //array of remaining 3 wrong options 
 
                     while (incorrectAnswers.includes(correctAnswer)) {
-                        shuffleArray(synonyms);
-                        incorrectAnswers = synonyms.slice(1, 4);
+                        shuffleArray(antonyms);
+                        incorrectAnswers = antonyms.slice(1, 4);
                     }
 
                     const answers = [

@@ -5,7 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
+    //background: linear-gradient(to right, #6a11cb, #2575fc);
     color: #333;
 }
 
@@ -55,17 +55,18 @@ h1 {
 
 .answer-btn {
     padding: 15px;
-    background: #4CAF50;
-    color: white;
-    border: none;
+    background: white;
+    color: black;
+    border: 2px solid black;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1em;
     transition: background 0.3s, transform 0.3s;
+
 }
 
 .answer-btn:hover {
-    background: #45A049;
+    //background: #45A049;
     transform: translateY(-2px);
 }
 
@@ -78,6 +79,9 @@ h1 {
     font-size: 1.5em;
 }
 
+#feedback{
+    display:none;
+}
 .start-btn, .level-btn, .play-btn, .next-btn, .restart-btn {
     padding: 10px 20px;
     background: #007BFF;
@@ -101,4 +105,29 @@ h1 {
 
 #next-container {
     margin-top: 20px;
+    display:none;
+}
+
+@keyframes blink{
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+#restart-btn{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    padding: 15px 25px;
+    background: #d18b1b;
+    border: none; /* Added for consistency */
+    border-radius: 5px;
+   // margin-top: -10px;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }

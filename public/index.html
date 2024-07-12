@@ -1,0 +1,31 @@
+<!-- Home page -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrainStorming</title>
+    <script
+      src="https://unpkg.com/htmx.org@2.0.0/dist/htmx.js"
+      integrity="sha384-Xh+GLLi0SMFPwtHQjT72aPG19QvKB8grnyRbYBNIdHWc2NkCrz65jlU7YrzO6qRp"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="welcome-box">
+        <div >
+          <img src="img/brain.png" alt="logo" class="logo1" />
+        </div>
+        <div>
+          <h3>The Ultimate Word Quiz</h3>
+          <a href="/level">
+            <button 
+												hx-get="/level" hx-target="body" hx-swap="innerHTML">GET STARTED<i class="arrow right"></i></button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

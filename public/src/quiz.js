@@ -37,6 +37,7 @@ function startTimer() {
         timerElement.classList.add('blink');
         timerElement.style.color = 'red';
       } else {
+        timerElement.classList.add('blink');
         timerElement.style.color = 'black';
       }
       timeLeft -= 1;

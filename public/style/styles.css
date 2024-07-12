@@ -1,0 +1,116 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.logo1 {
+  width: 50%;
+  height: auto; /* Adjust to keep the aspect ratio */
+  margin-top: 0; /* Place the image at the top */
+}
+
+.container {
+  text-align: center;
+}
+
+button {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 15px 25px;
+  background: #d18b1b;
+  border: none; /* Added for consistency */
+  border-radius: 5px;
+  margin-top: -20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #b48841;
+}
+
+.arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+  margin-left: 5px; /* Added spacing */
+}
+
+.right {
+  /* Adjusted to a proper right arrow */
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+h3 {
+  color: black;
+  font-size: 30px;
+  margin-top: -40px; /* Added top margin */
+  margin-bottom: 40px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-box {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 15px;
+  padding: 50px; /* Adjusted to fit the logo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 150px; /* Adjust the width as needed */
+  margin-bottom: 20px; /* Space between logo and buttons */
+}
+
+.level-btn {
+  border: 3px solid transparent;
+  padding: 15px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 10px 0;
+  color: rgb(0, 0, 0);
+  transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+  text-decoration: none;
+}
+
+.orange {
+  background-color: #d18b1b;
+  border-color: #000000;
+}
+
+.level-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Specific button lengths */
+#easy-btn {
+  padding: 15px 40px;
+}
+
+#medium-btn {
+  padding: 15px 70px;
+}
+
+#hard-btn {
+  padding: 15px 100px;
+}

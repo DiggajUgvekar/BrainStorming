@@ -10,22 +10,22 @@
       integrity="sha384-Xh+GLLi0SMFPwtHQjT72aPG19QvKB8grnyRbYBNIdHWc2NkCrz65jlU7YrzO6qRp"
       crossorigin="anonymous"
     ></script>
-	<link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/styles.css" />
   </head>
   <body>
-    <!-- Write the code here -->
     <div class="container">
-		<div class="welcome-box">
-		  <div class="logo">
-			<img src="../img/brain.png" alt="logo" />
-		  </div>
-		  <div>
-			<h3>The Ultimate Word Quiz</h3>
-			<a href="/level">
-			  <button>GET STARTED<i class="arrow right"></i></button>
-			</a>
-		  </div>
-		</div>
-	  </div>
+      <div class="welcome-box">
+        <div >
+          <img src="../img/brain.png" alt="logo" class="logo1" />
+        </div>
+        <div>
+          <h3>The Ultimate Word Quiz</h3>
+          <a href="/level">
+            <button 
+												hx-get="/level" hx-target="body" hx-swap="innerHTML">GET STARTED<i class="arrow right"></i></button>
+          </a>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

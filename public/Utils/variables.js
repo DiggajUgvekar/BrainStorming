@@ -3,5 +3,6 @@ export let variables = {
     score: 0,
     currentQuestionIndex: 0,
     questions: [],
-    Questions: []
+    Questions: [],
+    lives: 3
 };

@@ -15,20 +15,19 @@ async function fetchWords(level) {
 
     switch (level) {
         case 'easy':
-        fileName = '1words.txt';
+        fileName = '../public/Utils/wordsDoc/1words.txt';
         break;
         case 'medium':
-        fileName = '2words.txt';
+        fileName = '../public/Utils/wordsDoc/2words.txt';
         break;
         case 'hard':
-        fileName = '3words.txt';
+        fileName = '../public/Utils/wordsDoc/3words.txt';
         break;
         default:
         throw new Error('Invalid difficulty level');
     }
 
     const filePath = path.join(__dirname, '../public', fileName);
-    // const filePath = path.join(__dirname, '../public', '1words.txt');
     try {
         const data = fs.readFileSync(filePath, 'utf8');
         let words = data.trim().split('\n');

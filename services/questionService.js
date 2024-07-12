@@ -10,8 +10,25 @@ const API_KEY = 'fa81optvNubLaGF/JNbesg==YvbvPrLlMCIFT4kh';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-async function fetchWords() {
-    const filePath = path.join(__dirname, '../public', 'words.txt');
+async function fetchWords(level) {
+    let fileName;
+
+    switch (level) {
+        case 'easy':
+        fileName = '1words.txt';
+        break;
+        case 'medium':
+        fileName = '2words.txt';
+        break;
+        case 'hard':
+        fileName = '3words.txt';
+        break;
+        default:
+        throw new Error('Invalid difficulty level');
+    }
+
+    const filePath = path.join(__dirname, '../public', fileName);
+    // const filePath = path.join(__dirname, '../public', '1words.txt');
     try {
         const data = fs.readFileSync(filePath, 'utf8');
         let words = data.trim().split('\n');
@@ -23,9 +40,9 @@ async function fetchWords() {
     }
 }
 
-async function fetchQuestions() {
+async function fetchQuestions(level) {
     try {
-        const words = await fetchWords();
+        const words = await fetchWords(level);
         let questions = variables.questions;
         questions.splice(0, questions.length);
         const fetchPromises = words.map(async (word) => {
@@ -39,7 +56,7 @@ async function fetchQuestions() {
                 if (response.data && response.data.synonyms && response.data.synonyms.length > 1) {
                     const synonyms = response.data.synonyms;
                     const antonyms = response.data.antonyms;
-                    shuffleArray(synonyms);
+                    // shuffleArray(synonyms);
 
                     const correctAnswer = synonyms[0];
                     let incorrectAnswers = antonyms.slice(1, 4);  //array of remaining 3 wrong options 

@@ -32,6 +32,9 @@
         <button id="next-btn" class="next-btn" onclick="loadNextQuestion()">
           Next Question
         </button>
+        <button id="quit-btn" class="quit-btn" onclick="quitQuiz()">
+          Quit
+        </button>
       </div>
     </div>
 
@@ -229,16 +232,21 @@
         currentQuestionIndex++;
       }
 
-      function showFinalScore(){
-        const quizContainer = document.getElementById('quiz-container');
-        quizContainer.innerHTML=   `
-        <div id = "final-score">
-        <h2>Quiz Completed!</h2>
-        <h3>Your final score is: ${score}</h3>
-        <button id="restart-btn" class="next-btn" onclick="window.location.reload()">Restart Quiz</button>
-        </div>
-        `
-      }
+       function quitQuiz() {
+  clearInterval(countdown);
+  showFinalScore();
+}
+
+function showFinalScore() {
+  const quizContainer = document.getElementById("quiz-container");
+  quizContainer.innerHTML = `
+    <div id="final-score">
+      <h2>Quiz Completed!</h2>
+      <h3>Your final score is: ${score}</h3>
+      <button id="restart-btn" class="next-btn" onclick="window.location.reload()">Restart Quiz</button>
+    </div>
+  `;
+}
 
       document.addEventListener("DOMContentLoaded", fetchQuestions);
     </script>

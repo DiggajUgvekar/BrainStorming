@@ -80,7 +80,7 @@ h1 {
 #feedback{
     display:none;
 }
-.start-btn, .level-btn, .play-btn, .next-btn, .restart-btn {
+.start-btn, .level-btn, .play-btn, .next-btn, .restart-btn, .quit-btn {
     padding: 10px 20px;
     background: #007BFF;
     color: white;
@@ -91,12 +91,12 @@ h1 {
     transition: background 0.3s, transform 0.3s;
 }
 
-.start-btn:hover, .level-btn:hover, .play-btn:hover, .next-btn:hover, .restart-btn:hover {
+.start-btn:hover, .level-btn:hover, .play-btn:hover, .next-btn:hover, .restart-btn:hover, .quit-btn:hover {
     background: #0056b3;
     transform: translateY(-2px);
 }
 
-.start-btn:active, .level-btn:active, .play-btn:active, .next-btn:active, .restart-btn:active {
+.start-btn:active, .level-btn:active, .play-btn:active, .next-btn:active, .restart-btn:active, .quit-btn:active {
     background: #004494;
     transform: translateY(0);
 }

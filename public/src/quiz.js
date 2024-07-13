@@ -1,7 +1,7 @@
 
 import { variables } from '../Utils/variables.js';
 
-variables.lives = 3;  // Add lives to the variables
+variables.lives = 3;
 
 async function fetchQuestions() {
   try {
@@ -46,8 +46,8 @@ function startTimer() {
 }
 
 function checkAnswer(isCorrect, btn) {
-  clearInterval(variables.countdown);
   disableAnswers();
+  clearInterval(variables.countdown);
   
   if (isCorrect) {
     variables.score += 10;
@@ -131,7 +131,10 @@ function loadNextQuestion() {
   startTimer();
   variables.currentQuestionIndex++;
 }
-
+function quitQuiz() {
+  clearInterval(variables.countdown);
+  showFinalScore();
+}
 function showFinalScore() {
   const quizContainer = document.getElementById('quiz-container');
   quizContainer.innerHTML = `
@@ -178,25 +181,5 @@ function getLivesIcons() {
 }
 
 document.getElementById('next-btn').addEventListener('click', loadNextQuestion);
+document.getElementById('quit-btn').addEventListener('click', quitQuiz);
 document.addEventListener("DOMContentLoaded", fetchQuestions);
-
-
-// function checkAnswer(isCorrect, btn) {
-  //         clearInterval(variables.countdown);
-  //         disableAnswers();
-      
-  //         if (isCorrect) {
-  //             variables.score += 10;
-  //             const scoreElement = document.getElementById('score-value');
-  //             scoreElement.textContent = variables.score;
-  //             btn.style.backgroundColor = "green";
-  //         } else {
-  //             btn.style.backgroundColor = "red";
-  //             showCorrectAnswer();
-  //         }
-      
-  //         const nextContainer = document.getElementById('next-container');
-  //         if (nextContainer) {
-  //             nextContainer.style.display = 'block';
-  //         }
-  //     }

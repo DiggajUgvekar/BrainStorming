@@ -59,7 +59,7 @@ async function fetchQuestions(level) {
 
                     const correctAnswer = synonyms[0];
                     let incorrectAnswers = antonyms.slice(1, 4);  //array of remaining 3 wrong options 
-
+                    // console.log(correctAnswer)
                     while (incorrectAnswers.includes(correctAnswer)) {
                         shuffleArray(antonyms);
                         incorrectAnswers = antonyms.slice(1, 4);

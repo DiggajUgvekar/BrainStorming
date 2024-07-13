@@ -5,7 +5,6 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    //background: linear-gradient(to right, #6a11cb, #2575fc);
     color: #333;
 }
 
@@ -66,7 +65,6 @@ h1 {
 }
 
 .answer-btn:hover {
-    //background: #45A049;
     transform: translateY(-2px);
 }
 
@@ -126,8 +124,22 @@ h1 {
     background: #d18b1b;
     border: none; /* Added for consistency */
     border-radius: 5px;
-   // margin-top: -10px;
     display: inline-block;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.next-btn{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    padding: 15px 25px;
+    background: #0056b3;
+    border: none; /* Added for consistency */
+    border-radius: 5px;
+
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }

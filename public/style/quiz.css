@@ -134,7 +134,7 @@ h1 {
     color: #fff;
     font-size: 20px;
     padding: 15px 25px;
-    background: #d18b1b;
+    background: #0056b3;
     border: none; /* Added for consistency */
     border-radius: 5px;
 
@@ -142,8 +142,4 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-weight: bold;
-}
-
-.next-btn:hover {
-    background: #d18b1b;
 }

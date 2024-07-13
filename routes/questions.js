@@ -13,6 +13,7 @@ router.get('/questions', async (req, res) => {
 
     const questions = await fetchQuestions(level);
     if (questions.length > 0) {
+        // console.log(questions[0].answers)
         res.json(questions);
     } else {
         res.status(500).json({ error: 'Failed to load questions. Please try again.' });

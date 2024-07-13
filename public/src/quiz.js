@@ -9,8 +9,8 @@ async function fetchQuestions() {
     if (!response.ok) {
       throw new Error("Failed to load questions. Please try again.");
     }
-    variables.Questions = await response.json();
-    if (variables.Questions.length > 0) {
+    variables.questions = await response.json();
+    if (variables.questions.length > 0) {
       loadNextQuestion();
     } else {
       throw new Error("No questions fetched");
@@ -54,12 +54,13 @@ function checkAnswer(isCorrect, btn) {
     const scoreElement = document.getElementById('score-value');
     scoreElement.textContent = variables.score;
     btn.style.backgroundColor = "green";
+    variables.currentQuestionIndex++;
   } else {
     variables.lives -= 1;  // Decrement lives on wrong answer
     updateLivesDisplay();  // Update lives display
     btn.style.backgroundColor = "red";
     showCorrectAnswer();
-    
+    variables.currentQuestionIndex++;
     if (variables.lives <= 0) {
       showFinalScoreLost();  // Show loss screen if lives are depleted
       return;
@@ -79,12 +80,12 @@ function showFeedback(message) {
 }
 
 function showCorrectAnswer() {
-  const currentQuestion = variables.Questions[variables.currentQuestionIndex];
+  const currentQuestion = variables.questions[variables.currentQuestionIndex];
   if (!currentQuestion || !currentQuestion.answers) {
     console.error('Error: Question or answers are undefined.');
     return;
   }
-  
+  // console.log(currentQuestion.answers[0])
   const buttons = document.querySelectorAll('.answer-btn');
   buttons.forEach((btn, index) => {
     if (currentQuestion.answers[index] && currentQuestion.answers[index].correct) {
@@ -108,7 +109,7 @@ function loadNextQuestion() {
     return;
   }
   
-  const currentQuestion = variables.Questions[variables.currentQuestionIndex];
+  const currentQuestion = variables.questions[variables.currentQuestionIndex];
   const questionContainer = document.getElementById('question-container');
   const questionElement = questionContainer.querySelector('.question h2');
   const answersContainer = questionContainer.querySelector('.answers');
@@ -129,7 +130,7 @@ function loadNextQuestion() {
   document.getElementById('feedback').style.display = 'none';
   document.getElementById('next-container').style.display = 'none';
   startTimer();
-  variables.currentQuestionIndex++;
+ 
 }
 function quitQuiz() {
   clearInterval(variables.countdown);
